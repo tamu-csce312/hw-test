@@ -15,18 +15,25 @@
 #fi
 
 input="$1"
+count=0
+pass=0
 while IFS=: read -r var1 var2
 do
     #echo "$var1"
     #echo "$var2"
     #output of the program
     OUT="$($var1)"
+    echo "OUTPUT: "$OUT
     #answer of the problem
     ANS="$var2"
+    echo "ANSWER: "$ANS
     if [ "$OUT" = "$ANS" ]
     then
-      echo "PASS"
+      echo "=====================PASS======================"
+      pass=$((pass+1))
     else
-      echo "FAIL"
+      echo "=====================FAIL======================"
     fi
+    count=$((count+1))
 done < "$input"
+echo "Total Pass: $pass/$count"
